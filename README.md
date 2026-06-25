@@ -1,51 +1,82 @@
-# ⚡ TaskHub
+# ⚡ TaskHub — Stay on top of it
 
-A clean, modern task management app with a sidebar layout, dark mode, subtasks, priorities, categories, and real-time due-date alerts — all in pure HTML, CSS, and JavaScript. No build tools, no dependencies, no backend.
+> A modern, responsive task management app built with pure HTML, CSS & JavaScript. No frameworks. No build tools. Just clean code.
 
-![TaskHub Preview](preview.png)
+🌐 **Live Demo:** [https://taskhub-bss6.onrender.com](https://taskhub-bss6.onrender.com)
+
+---
 
 ## ✨ Features
 
-- **Add tasks** with name, due date, priority (High / Medium / Low), and category
-- **Subtasks** with per-task progress bars
-- **Sidebar navigation** — filter by All, Due Today, Overdue, Completed, or Category
-- **Search & sort** — find tasks by name; sort by newest, due date, priority, or name
-- **Dark / Light mode** toggle, persisted across sessions
-- **Floating action bar** — Edit, Mark Done, Remove when a task is selected
-- **Due-date notifications** — alerts for overdue tasks and tasks due tomorrow
-- **Progress tracker** — shows how many tasks you've completed
-- **Fully responsive** — works on mobile and desktop
-- **LocalStorage persistence** — tasks survive page refreshes
+- ➕ **Add Tasks** with name, due date, priority and category
+- 📋 **Subtasks** with progress bar per task
+- 🗂️ **Sidebar Navigation** — filter by All, Due Today, Overdue, Completed, or Category
+- 🔍 **Search & Sort** — find tasks instantly, sort by newest, due date, priority or name
+- 🌙 **Dark / Light Mode** — persisted across sessions
+- 🎯 **Floating Action Bar** — Edit, Mark Done, Remove when a task is selected
+- 🔔 **Due Date Alerts** — notifications for overdue tasks and tasks due tomorrow
+- 📊 **Progress Tracker** — see how many tasks you've completed
+- 💾 **LocalStorage** — tasks survive page refreshes
+- 📱 **Fully Responsive** — works on mobile and desktop
+
+---
 
 ## 🚀 Getting Started
 
-Just open `index.html` in your browser — no server required.
-
 ```bash
-git clone https://github.com/YOUR_USERNAME/taskhub.git
+git clone https://github.com/sainideepthi7-code/taskhub.git
 cd taskhub
-open index.html
 ```
 
-## 📁 File Structure
+Then open `index.html` in your browser — or use VS Code Live Server.
 
-```
+---
+
+## 📁 Project Structure
 taskhub/
-├── index.html    # App markup
-├── styles.css    # All styling & themes
-├── script.js     # App logic (TodoApp class)
-└── README.md
-```
 
-## 🛠 Tech Stack
+├── index.html      # App structure & markup
 
-- **HTML5** — semantic structure
-- **CSS3** — CSS custom properties for theming, CSS Grid & Flexbox for layout
-- **Vanilla JavaScript** — ES6 class-based architecture
-- **Font Awesome 6** — icons
-- **Google Fonts** — Inter + Space Grotesk
-- **LocalStorage** — data persistence
+├── styles.css      # All styling, themes & responsive design
 
-## 📝 License
+├── script.js       # App logic
 
-MIT — use it however you like.
+└── README.md       
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Usage |
+|---|---|
+| HTML5 | Semantic structure |
+| CSS3 | Custom properties, Grid, Flexbox, animations |
+| Vanilla JavaScript | ES6 class-based app logic |
+| Font Awesome 6 | Icons |
+| Google Fonts | Inter + Space Grotesk |
+| LocalStorage | Data persistence |
+| Render | Hosting & deployment |
+
+---
+
+## 📦 Deployment
+
+Deployed as a **Static Site on Render**.
+
+To deploy your own copy:
+1. Fork this repo
+2. Go to [render.com](https://render.com) → New → Static Site
+3. Connect your forked repo
+4. Set Publish Directory to `.`
+5. Click Deploy ✅
+
+---
+
+## 🙋‍♀️ Author
+
+**Deepthi Saini**
+- GitHub: [@sainideepthi7-code](https://github.com/sainideepthi7-code)
+
+---
+
+
+⭐ **If you found this useful, give it a star!**
