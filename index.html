@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskHub — Stay on top of it</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-wrapper">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fas fa-bolt"></i></div>
+                <span class="brand-name">TaskHub</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <span class="nav-label">Filters</span>
+                <button class="nav-item active" data-filter="all">
+                    <i class="fas fa-layer-group"></i> All Tasks
+                    <span class="nav-badge" id="countAll">0</span>
+                </button>
+                <button class="nav-item" data-filter="today">
+                    <i class="fas fa-sun"></i> Due Today
+                    <span class="nav-badge" id="countToday">0</span>
+                </button>
+                <button class="nav-item" data-filter="overdue">
+                    <i class="fas fa-fire"></i> Overdue
+                    <span class="nav-badge danger" id="countOverdue">0</span>
+                </button>
+                <button class="nav-item" data-filter="completed">
+                    <i class="fas fa-check-double"></i> Completed
+                    <span class="nav-badge success" id="countDone">0</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-categories">
+                <span class="nav-label">Categories</span>
+                <button class="nav-item" data-category="work"><i class="fas fa-briefcase"></i> Work</button>
+                <button class="nav-item" data-category="personal"><i class="fas fa-user"></i> Personal</button>
+                <button class="nav-item" data-category="shopping"><i class="fas fa-bag-shopping"></i> Shopping</button>
+                <button class="nav-item" data-category="health"><i class="fas fa-heart-pulse"></i> Health</button>
+                <button class="nav-item" data-category="other"><i class="fas fa-ellipsis"></i> Other</button>
+            </div>
+
+            <div class="sidebar-bottom">
+                <button id="darkModeToggle" class="theme-toggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                    <span id="themeLabel">Dark mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 class="page-title">My Tasks</h1>
+                    <p class="page-subtitle">Let's get things done today.</p>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <input type="text" id="searchInput" placeholder="Search tasks…">
+                    </div>
+                    <div class="sort-wrap">
+                        <i class="fas fa-arrow-down-wide-short"></i>
+                        <select id="sortBy">
+                            <option value="dateCreated">Newest</option>
+                            <option value="dueDate">Due Date</option>
+                            <option value="priority">Priority</option>
+                            <option value="name">Name</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Progress Banner -->
+            <div class="progress-banner">
+                <div class="progress-info">
+                    <span class="progress-fraction"><span id="completedTasks">0</span> / <span id="totalTasks">0</span> completed</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Add Task Panel -->
+            <section class="add-task-panel">
+                <div class="panel-body" id="panelBody">
+                    <div class="form-grid">
+                        <div class="form-field span-2">
+                            <label>Task name</label>
+                            <input type="text" id="newTask" placeholder="What needs to be done?">
+                        </div>
+                        <div class="form-field">
+                            <label>Due date</label>
+                            <input type="date" id="dueDate">
+                        </div>
+                        <div class="form-field">
+                            <label>Priority</label>
+                            <select id="priority">
+                                <option value="low">🟢 Low</option>
+                                <option value="medium">🟡 Medium</option>
+                                <option value="high">🔴 High</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Category</label>
+                            <select id="category">
+                                <option value="work">💼 Work</option>
+                                <option value="personal">👤 Personal</option>
+                                <option value="shopping">🛍️ Shopping</option>
+                                <option value="health">❤️ Health</option>
+                                <option value="other">✨ Other</option>
+                            </select>
+                        </div>
+                        <div class="form-field span-2">
+                            <label>Subtasks <span class="label-hint">(optional)</span></label>
+                            <div class="subtask-row">
+                                <input type="text" id="subtaskInput" placeholder="Add a subtask and press Enter…">
+                                <button id="addSubtaskBtn" class="btn-ghost"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div id="subtasksList" class="subtasks-chips"></div>
+                        </div>
+                    </div>
+                    <div class="panel-actions">
+                        <button id="addTaskBtn" class="btn-primary">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filter Strip -->
+            <div class="filter-strip">
+                <select id="priorityFilter" class="chip-select">
+                    <option value="all">All priorities</option>
+                    <option value="high">🔴 High</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="low">🟢 Low</option>
+                </select>
+                <select id="categoryFilter" class="chip-select">
+                    <option value="all">All categories</option>
+                    <option value="work">💼 Work</option>
+                    <option value="personal">👤 Personal</option>
+                    <option value="shopping">🛍️ Shopping</option>
+                    <option value="health">❤️ Health</option>
+                    <option value="other">✨ Other</option>
+                </select>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list-area">
+                <ul class="task-list" id="taskList"></ul>
+                <div class="empty-state" id="noTasksMessage">
+                    <div class="empty-icon"><i class="fas fa-inbox"></i></div>
+                    <p class="empty-title">No tasks here</p>
+                    <p class="empty-sub">Fill in the form above and hit Add Task.</p>
+                </div>
+            </div>
+
+            <!-- Floating Action Bar -->
+            <div class="action-bar" id="actionBar">
+                <span class="selected-label"><i class="fas fa-circle-check"></i> 1 task selected</span>
+                <div class="action-bar-btns">
+                    <button id="editTaskBtn" class="bar-btn"><i class="fas fa-pen"></i> Edit</button>
+                    <button id="markDoneBtn" class="bar-btn success"><i class="fas fa-check"></i> Done</button>
+                    <button id="removeTaskBtn" class="bar-btn danger"><i class="fas fa-trash"></i> Remove</button>
+                    <button id="deselectBtn" class="bar-btn ghost"><i class="fas fa-xmark"></i></button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Warning Toast -->
+    <div id="warningMessage" class="toast toast-warn" style="display:none">
+        <i class="fas fa-triangle-exclamation"></i> Please select a task first.
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
